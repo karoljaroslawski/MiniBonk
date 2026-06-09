@@ -187,22 +187,17 @@ public class EnemyDirector : MonoBehaviour
 
     Vector3 GetSpawnPosition()
     {
-        Vector2 direction =
-            Random.insideUnitCircle.normalized;
+        Vector2 direction = Random.insideUnitCircle.normalized;
 
-        float distance =
-            Random.Range(
-                30f,
-                40f
-            );
+        float distance = Random.Range(30f, 40f);
 
-        return player.position +
-            new Vector3(
-                direction.x,
-                0,
-                direction.y
-            ) *
-            distance;
+        Vector3 pos = player.position +
+            new Vector3(direction.x, 0, direction.y) * distance;
+
+        pos.x = Mathf.Clamp(pos.x, -45f, 145f);
+        pos.z = Mathf.Clamp(pos.z, -145f, 45f);
+
+        return pos;
     }
 
     public int GetRemainingBudget()
