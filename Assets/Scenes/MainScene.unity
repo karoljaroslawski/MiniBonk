@@ -452,9 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48c0d59cef74bf458716648d82ef8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoShooter
-  bulletPrefab: {fileID: 0}
-  fireRate: 0.5
-  damage: 10
+  bulletPrefab: {fileID: 2598991118480390689, guid: c925877be779e614b8683a0ec4198cac, type: 3}
 --- !u!1 &547793139
 GameObject:
   m_ObjectHideFlags: 0
