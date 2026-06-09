@@ -41,13 +41,13 @@ public class PlayerXP : MonoBehaviour
 
         UpgradeManager.Instance.ShowUpgrade();
 
-        AutoShooter shooter =
+        /*AutoShooter shooter =
         GetComponent<AutoShooter>();
 
         if (shooter != null)
         {
             shooter.damage += 2;
-        }
+        }*/
         UIManager.Instance.UpdateLevel(
             level
         );
@@ -56,7 +56,7 @@ public class PlayerXP : MonoBehaviour
     void Update()
     {
         UIManager.Instance.UpdateStats(
-            GetComponent<AutoShooter>(),
+            //GetComponent<AutoShooter>(),
             GetComponent<PlayerMovement>(),
             this,
             GetComponent<PlayerHealth>()

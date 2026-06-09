@@ -154,3 +154,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   speed: 20
+  speedMult: 1
+  damage: 10

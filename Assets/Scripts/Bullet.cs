@@ -4,6 +4,8 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
 
+    public float speedMult = 1f;
+
     public int damage = 10;
 
     private Vector3 direction;
@@ -20,6 +22,7 @@ public class Bullet : MonoBehaviour
         transform.position +=
             direction *
             speed *
+            speedMult *
             Time.deltaTime;
     }
 

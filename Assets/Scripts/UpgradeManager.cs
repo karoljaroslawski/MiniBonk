@@ -150,8 +150,8 @@ public class UpgradeManager : MonoBehaviour
         GameObject player =
             GameObject.Find("Player");
 
-        AutoShooter shooter =
-            player.GetComponent<AutoShooter>();
+        //AutoShooter shooter =
+         //   player.GetComponent<AutoShooter>();
 
         PlayerHealth health =
             player.GetComponent<PlayerHealth>();
@@ -164,7 +164,7 @@ public class UpgradeManager : MonoBehaviour
 
         switch (type)
         {
-            case UpgradeType.Damage:
+            /*case UpgradeType.Damage:
 
                 shooter.damage =
                     Mathf.RoundToInt(
@@ -175,7 +175,7 @@ public class UpgradeManager : MonoBehaviour
             case UpgradeType.FireRate:
 
                 shooter.fireRate *= 0.85f;
-                break;
+                break;*/
 
             case UpgradeType.MaxHealth:
 

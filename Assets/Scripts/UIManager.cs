@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateStats(
-        AutoShooter shooter,
+        //AutoShooter shooter,
         PlayerMovement movement,
         PlayerXP xp,
         PlayerHealth health)
@@ -81,11 +81,11 @@ public class UIManager : MonoBehaviour
         statsText.text =
             "STATS\n\n" +
 
-            "Damage: " +
-            shooter.damage +
+            //"Damage: " +
+            //shooter.damage +
 
-            "\nFire Rate: " +
-            shooter.fireRate.ToString("F2") +
+            //"\nFire Rate: " +
+            //shooter.fireRate.ToString("F2") +
 
             "\nSpeed: " +
             movement.speed.ToString("F1") +
