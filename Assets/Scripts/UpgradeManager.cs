@@ -28,6 +28,9 @@ public class UpgradeManager : MonoBehaviour
 
         panel.SetActive(true);
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         GenerateChoices();
     }
 
@@ -134,7 +137,11 @@ public class UpgradeManager : MonoBehaviour
 
         panel.SetActive(false);
 
+
         Time.timeScale = 1f;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void ApplyUpgrade(
