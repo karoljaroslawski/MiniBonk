@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 2.5f);
     }
 
     void OnTriggerEnter(Collider other)
@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
 
         if (enemy != null)
             enemy.TakeDamage(damage);
-        if(other.tag!="Player")
+        if(other.tag!="Player" && other.tag != "bullet")
             Destroy(gameObject);
     }
 }

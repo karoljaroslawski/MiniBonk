@@ -9796,7 +9796,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoShooter
   bulletPrefab: {fileID: 2598991118480390689, guid: c925877be779e614b8683a0ec4198cac, type: 3}
-  wm: {fileID: 1171090949}
 --- !u!114 &285980693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59909,7 +59908,6 @@ MonoBehaviour:
   button1: {fileID: 157833098}
   button2: {fileID: 1493441942}
   button3: {fileID: 1029705837}
-  weaponManager: {fileID: 1171090949}
 --- !u!4 &2026021815
 Transform:
   m_ObjectHideFlags: 0
@@ -63397,12 +63395,8 @@ SceneRoots:
   - {fileID: 1029318016}
   - {fileID: 916789486}
   - {fileID: 1297343187}
-<<<<<<< HEAD
-  - {fileID: 1171090950}
-=======
   - {fileID: 281959573}
   - {fileID: 2042614235}
   - {fileID: 282176987}
   - {fileID: 422047650}
   - {fileID: 2104918756}
->>>>>>> main
