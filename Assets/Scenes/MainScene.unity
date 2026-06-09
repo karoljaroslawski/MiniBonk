@@ -1041,6 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoShooter
   bulletPrefab: {fileID: 2598991118480390689, guid: c925877be779e614b8683a0ec4198cac, type: 3}
+  wm: {fileID: 1171090949}
 --- !u!114 &285980693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3015,6 +3016,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155792139}
   m_CullTransparentMesh: 1
+--- !u!1 &1171090948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1171090950}
+  - component: {fileID: 1171090949}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1171090949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171090948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de70a4d8c346cb841af8be607245054e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
+--- !u!4 &1171090950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171090948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.32207, y: 0, z: 0.41068}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195837093
 GameObject:
   m_ObjectHideFlags: 0
@@ -6058,6 +6103,7 @@ MonoBehaviour:
   button1: {fileID: 157833098}
   button2: {fileID: 1493441942}
   button3: {fileID: 1029705837}
+  weaponManager: {fileID: 1171090949}
 --- !u!4 &2026021815
 Transform:
   m_ObjectHideFlags: 0
@@ -6172,3 +6218,4 @@ SceneRoots:
   - {fileID: 2026021815}
   - {fileID: 916789486}
   - {fileID: 1297343187}
+  - {fileID: 1171090950}

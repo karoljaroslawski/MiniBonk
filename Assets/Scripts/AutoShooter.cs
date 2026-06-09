@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class AutoShooter : MonoBehaviour
@@ -9,11 +6,7 @@ public class AutoShooter : MonoBehaviour
 
     private float timer;
 
-    private WeaponManager wm;
-    void Awake()
-    {
-        this.wm = new WeaponManager();
-    }
+    public WeaponManager wm;
     void Update()
     {
         timer += Time.deltaTime;
@@ -23,7 +16,7 @@ public class AutoShooter : MonoBehaviour
         }
     }
 
-    void ShootBullet(int damage, float speedMult, Vector3 direction, GameObject nearestEnemy)
+    void ShootBullet(Weapon w, Vector3 direction, GameObject nearestEnemy)
     {
         GameObject bullet =
         Instantiate(
@@ -37,8 +30,10 @@ public class AutoShooter : MonoBehaviour
 
         bulletScript.SetDirection(direction);
 
-        bulletScript.damage = damage;
-        bulletScript.speedMult = speedMult;
+        bulletScript.damage = w.damage;
+        bulletScript.speedMult = w.speedMult;
+
+        bulletScript.setMaterial(w.weaponType);
     }
 
     void Shoot(Weapon w, float timer)
@@ -57,7 +52,7 @@ public class AutoShooter : MonoBehaviour
                 Vector3 direction = nearestEnemy.transform.position - transform.position;
                 float spread = 45f/w.bulletNumber;
                 Quaternion rotation = Quaternion.AngleAxis((i-w.bulletNumber/2)*spread, Vector3.up);
-                ShootBullet(w.damage, w.speedMult, rotation * direction, nearestEnemy);
+                ShootBullet(w, rotation * direction, nearestEnemy);
             }
         }
         else
@@ -65,7 +60,7 @@ public class AutoShooter : MonoBehaviour
             Vector3 direction =
                     nearestEnemy.transform.position -
                     transform.position;
-            ShootBullet(w.damage, 1f, direction, nearestEnemy);
+            ShootBullet(w, direction, nearestEnemy);
         }
         
     }
@@ -99,57 +94,3 @@ public class AutoShooter : MonoBehaviour
     }
 }
 
-public class WeaponManager
-{
-    public Weapon pistol;
-    public Weapon shotgun;
-    public Weapon ar;
-    public Weapon sniper;
-    public List<Weapon> activeWeapons;
-
-    public WeaponManager()
-    {
-        this.pistol = new Weapon(5, 1, 1f, 0.1f, 1, 1f, WeaponTypes.pistol);
-        this.shotgun = new Weapon(3, 1, 2f, 0.1f, 5, 0.5f, WeaponTypes.shotgun);
-        this.sniper = new Weapon(20, 1, 3f, 0.2f, 1, 2f, WeaponTypes.sniper);
-        this.activeWeapons = new List<Weapon>();
-        this.activeWeapons.Add(this.pistol);
-    }
-
-}
-
-public class Weapon
-{
-
-    public int damage = 1;
-    public int damageGain = 1;
-    public float fireRate = 1;
-    public float fireRateGain = 1;
-    public int bulletNumber = 1;
-    public float lastShot = 0;
-    public float speedMult = 1f;
-    public WeaponTypes weaponType = WeaponTypes.pistol;
-
-
-    public Weapon(int damage, int damageGain, float fireRate, float fireRateGain, int bulletNumber, float speedMult, WeaponTypes weaponType)
-    {
-        this.damage = damage;
-        this.damageGain = damageGain;
-        this.fireRate = fireRate;
-        this.fireRateGain = fireRateGain;
-        this.bulletNumber = bulletNumber;
-        this.weaponType = weaponType;
-        this.speedMult = speedMult;
-    }
-
-    public void UpgradeWeapon()
-    {
-        this.damage += damageGain;
-        this.fireRate -= fireRateGain;
-    }
-}
-
-public enum WeaponTypes
-{
-    pistol, shotgun, ar, sniper
-}
