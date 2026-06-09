@@ -58,10 +58,8 @@ public class Bullet : MonoBehaviour
             other.GetComponent<EnemyHealth>();
 
         if (enemy != null)
-        {
             enemy.TakeDamage(damage);
-
+        if(other.tag!="Player")
             Destroy(gameObject);
-        }
     }
 }
