@@ -14,6 +14,7 @@ public class UpgradeManager : MonoBehaviour
     public Button button3;
 
     private UpgradeType[] currentChoices;
+    public WeaponManager weaponManager;
 
     void Awake()
     {
@@ -36,17 +37,20 @@ public class UpgradeManager : MonoBehaviour
 
     void GenerateChoices()
     {
+        List<WeaponTypes> aviableUpgrades = weaponManager.GetComponent<WeaponManager>().GetAviableUpgrades();
+
         List<UpgradeType> upgrades =
             new List<UpgradeType>()
             {
-                UpgradeType.Damage,
-                UpgradeType.FireRate,
                 UpgradeType.MaxHealth,
                 UpgradeType.Heal,
                 UpgradeType.XPMultiplier,
                 UpgradeType.MoveSpeed,
                 UpgradeType.HealthRegen
             };
+        if (aviableUpgrades.Contains(WeaponTypes.single)) upgrades.Add(UpgradeType.WeaponSingle);
+        if (aviableUpgrades.Contains(WeaponTypes.shotgun)) upgrades.Add(UpgradeType.WeaponShotgun);
+        if (aviableUpgrades.Contains(WeaponTypes.sniper)) upgrades.Add(UpgradeType.WeaponSniper);
 
         currentChoices =
             new UpgradeType[3];
@@ -103,12 +107,6 @@ public class UpgradeManager : MonoBehaviour
     {
         switch (type)
         {
-            case UpgradeType.Damage:
-                return "+20% DAMAGE";
-
-            case UpgradeType.FireRate:
-                return "+15% FIRE RATE";
-
             case UpgradeType.MaxHealth:
                 return "+20 MAX HP";
 
@@ -123,6 +121,15 @@ public class UpgradeManager : MonoBehaviour
 
             case UpgradeType.HealthRegen:
                 return "+0.1 HP REGEN";
+
+            case UpgradeType.WeaponSingle:
+                return "Upgrade weapon single";
+
+            case UpgradeType.WeaponShotgun:
+                return "Upgrade weapon shotgun";
+
+            case UpgradeType.WeaponSniper:
+                return "Upgrade weapon sniper";
         }
 
         return "";
@@ -150,9 +157,6 @@ public class UpgradeManager : MonoBehaviour
         GameObject player =
             GameObject.Find("Player");
 
-        //AutoShooter shooter =
-         //   player.GetComponent<AutoShooter>();
-
         PlayerHealth health =
             player.GetComponent<PlayerHealth>();
 
@@ -164,18 +168,6 @@ public class UpgradeManager : MonoBehaviour
 
         switch (type)
         {
-            /*case UpgradeType.Damage:
-
-                shooter.damage =
-                    Mathf.RoundToInt(
-                        shooter.damage * 1.2f
-                    );
-                break;
-
-            case UpgradeType.FireRate:
-
-                shooter.fireRate *= 0.85f;
-                break;*/
 
             case UpgradeType.MaxHealth:
 
@@ -205,6 +197,16 @@ public class UpgradeManager : MonoBehaviour
 
                 health.healthRegen += 0.1f;
 
+                break;
+
+            case UpgradeType.WeaponSingle:
+                weaponManager.UpgradeWeapon(WeaponTypes.single);
+                break;
+            case UpgradeType.WeaponShotgun:
+                weaponManager.UpgradeWeapon(WeaponTypes.shotgun);
+                break;
+            case UpgradeType.WeaponSniper:
+                weaponManager.UpgradeWeapon(WeaponTypes.sniper);
                 break;
         }
     }

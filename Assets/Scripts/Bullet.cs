@@ -10,11 +10,32 @@ public class Bullet : MonoBehaviour
 
     private Vector3 direction;
 
+    public Material materialSingle;
+    public Material materialSpread;
+    public Material materialFast;
+
     public void SetDirection(Vector3 dir)
     {
         direction = dir.normalized;
 
         Debug.Log("Direction: " + direction);
+    }
+
+    public void setMaterial(WeaponTypes weaponType)
+    {
+
+        switch (weaponType)
+        {
+            case WeaponTypes.single:
+                this.GetComponent<MeshRenderer>().material = materialSingle;
+                break;
+            case WeaponTypes.shotgun:
+                this.GetComponent<MeshRenderer>().material = materialSpread;
+                break;
+            case WeaponTypes.sniper:
+                this.GetComponent<MeshRenderer>().material = materialFast;
+                break;
+        }
     }
 
     void Update()
