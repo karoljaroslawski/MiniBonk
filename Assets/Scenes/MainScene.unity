@@ -267,8 +267,8 @@ GameObject:
   - component: {fileID: 285980690}
   - component: {fileID: 285980689}
   - component: {fileID: 285980691}
-  - component: {fileID: 285980692}
   - component: {fileID: 285980693}
+  - component: {fileID: 285980694}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -424,21 +424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
   healthRegen: 0.1
---- !u!114 &285980692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285980684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48c0d59cef74bf458716648d82ef8c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AutoShooter
-  bulletPrefab: {fileID: 2598991118480390689, guid: c925877be779e614b8683a0ec4198cac, type: 3}
-  fireRate: 0.5
-  damage: 10
 --- !u!114 &285980693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +440,21 @@ MonoBehaviour:
   currentXP: 0
   xpToNextLevel: 50
   xpMultiplier: 1
+--- !u!114 &285980694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285980684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48c0d59cef74bf458716648d82ef8c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoShooter
+  bulletPrefab: {fileID: 0}
+  fireRate: 0.5
+  damage: 10
 --- !u!1 &547793139
 GameObject:
   m_ObjectHideFlags: 0
