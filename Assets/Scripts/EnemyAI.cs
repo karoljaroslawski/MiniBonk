@@ -62,12 +62,11 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (attackTimer <= 0f)
+        if (attackTimer <= 0f && collision.gameObject.CompareTag("Player"))
         {
             attackTimer = 1f;
             PlayerHealth health =
                 collision.gameObject.GetComponent<PlayerHealth>();
-
             if (health != null)
             {
                 if (animator != null) animator.SetTrigger("attack");

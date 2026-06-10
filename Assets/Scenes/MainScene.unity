@@ -6382,6 +6382,10 @@ PrefabInstance:
       value: Hero_Nature_Body
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 7a318391d7273754c8106514a8f88bb8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7a318391d7273754c8106514a8f88bb8, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: dd101e0dd4d967f499c96f7687c61c82, type: 2}
@@ -38509,7 +38513,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDirector
   gruntPrefab: {fileID: 1629681010628424996, guid: b02b430d9ec05464ab3eeecac87fe9e3, type: 3}
   runnerPrefab: {fileID: 31318947124097220, guid: db6ac1edcfa451d4292d195021970479, type: 3}
-  tankPrefab: {fileID: 1629681010628424996, guid: 89f95dd253595c14eb39ff09dd216e7f, type: 3}
+  tankPrefab: {fileID: 130014967425481948, guid: 8e4c2646577cc9e4b8a868563398b98b, type: 3}
+  flyingPrefab: {fileID: 8834422002603064455, guid: 903fb280b33aeef4c87484c7d7df5d2a, type: 3}
+  ghostPrefab: {fileID: 538723415707772084, guid: ba6b88142bc752c45b5e0e186c4e155b, type: 3}
   player: {fileID: 285980688}
 --- !u!1 &1301153801
 GameObject:
@@ -45401,7 +45407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e22add2c4ff8094dbbf4519b97ad944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  wave: 1
+  wave: 21
   currentTier: 1
   waveBudget: 0
   minimumEnemies: 0
@@ -63612,6 +63618,10 @@ PrefabInstance:
     - target: {fileID: 1445190902575439855, guid: 330bfa7aa894f2942807d022cede6663, type: 3}
       propertyPath: m_Name
       value: MeleeWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1445190902575439855, guid: 330bfa7aa894f2942807d022cede6663, type: 3}
+      propertyPath: m_TagString
+      value: bullet
       objectReference: {fileID: 0}
     - target: {fileID: 2402381420055843603, guid: 330bfa7aa894f2942807d022cede6663, type: 3}
       propertyPath: m_LocalScale.x

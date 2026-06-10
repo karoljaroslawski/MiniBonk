@@ -9,6 +9,8 @@ public class EnemyDirector : MonoBehaviour
     public GameObject gruntPrefab;
     public GameObject runnerPrefab;
     public GameObject tankPrefab;
+    public GameObject flyingPrefab;
+    public GameObject ghostPrefab;
 
     [Header("References")]
     public Transform player;
@@ -114,6 +116,10 @@ public class EnemyDirector : MonoBehaviour
 
         EnemyHealth tank =
             tankPrefab.GetComponent<EnemyHealth>();
+        EnemyHealth flying =
+            flyingPrefab.GetComponent<EnemyHealth>();
+        EnemyHealth ghost =
+            ghostPrefab.GetComponent<EnemyHealth>();
 
         if (
             tier >= 1 &&
@@ -137,6 +143,20 @@ public class EnemyDirector : MonoBehaviour
         )
         {
             possible.Add(tankPrefab);
+        }
+        if (
+            tier >= 4 &&
+            flying.cost <= remainingBudget
+        )
+        {
+            possible.Add(flyingPrefab);
+        }
+        if (
+            tier >= 4 &&
+            ghost.cost <= remainingBudget
+        )
+        {
+            possible.Add(ghostPrefab);
         }
 
         if (possible.Count == 0)
