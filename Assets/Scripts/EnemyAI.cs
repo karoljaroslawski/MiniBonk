@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     private Transform player;
 
-    private float attackTimer;
+    private float attackTimer = 0f;
 
     void Start()
     {
@@ -23,6 +23,8 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        attackTimer = Mathf.Max(attackTimer - Time.deltaTime, 0f);
+
         Vector3 direction =
             player.position -
             transform.position;
@@ -52,22 +54,14 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (attackTimer <= 0f)
         {
-            attackTimer += Time.deltaTime;
+            PlayerHealth health =
+                collision.gameObject.GetComponent<PlayerHealth>();
 
-            if (attackTimer >= 1f)
-            {
-                attackTimer = 0f;
-
-                PlayerHealth health =
-                    collision.gameObject.GetComponent<PlayerHealth>();
-
-                if (health != null)
-                {
-                    health.TakeDamage(10);
-                }
-            }
+            if (health != null)
+                health.TakeDamage(10);
+            attackTimer = 1f;
         }
     }
 }

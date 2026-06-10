@@ -7,6 +7,7 @@ public class WeaponManager : MonoBehaviour
     public Weapon single;
     public Weapon shotgun;
     public Weapon sniper;
+    public Weapon sword;
     public List<Weapon> activeWeapons;
 
     public WeaponManager()
@@ -14,9 +15,10 @@ public class WeaponManager : MonoBehaviour
         this.single = new Weapon(8, 1, 1f, 0.1f, 1, 1f, WeaponTypes.single);
         this.shotgun = new Weapon(4, 1, 2.3f, 0.1f, 3, 0.3f, WeaponTypes.shotgun);
         this.sniper = new Weapon(20, 1, 4f, 0.2f, 1, 4f, WeaponTypes.sniper);
+        this.sword = new Weapon(10, 2, 1f, 0.2f, 1, 4f, WeaponTypes.sword);
         this.activeWeapons = new List<Weapon>();
-        this.activeWeapons.Add(this.single);
-        //this.activeWeapons.Add(this.shotgun);
+        //this.activeWeapons.Add(this.single);
+        this.activeWeapons.Add(this.sword);
         //this.activeWeapons.Add(this.sniper);
     }
 
@@ -26,6 +28,8 @@ public class WeaponManager : MonoBehaviour
         if (this.single.level < 7) aviableUpgrades.Add(WeaponTypes.single);
         if (this.shotgun.level < 7) aviableUpgrades.Add(WeaponTypes.shotgun);
         if (this.sniper.level < 7) aviableUpgrades.Add(WeaponTypes.sniper);
+        if (this.sniper.level < 7) aviableUpgrades.Add(WeaponTypes.sword);
+
         return aviableUpgrades;
     }
 
@@ -39,6 +43,8 @@ public class WeaponManager : MonoBehaviour
                 return this.shotgun;
             case WeaponTypes.sniper:
                 return this.sniper;
+            case WeaponTypes.sword:
+                return this.sword;
         }
         return null;
     }
@@ -47,7 +53,7 @@ public class WeaponManager : MonoBehaviour
     {
         Weapon w = getWeponByType(wt);
         if (!activeWeapons.Contains(w)) activeWeapons.Add(w);
-        w.UpgradeWeapon();
+        else w.UpgradeWeapon();
     }
 
 }
@@ -84,6 +90,8 @@ public class Weapon
 
         if (this.weaponType == WeaponTypes.shotgun && level % 3 == 0)
             this.bulletNumber += 2;
+        else if (this.weaponType == WeaponTypes.sword)
+            this.bulletNumber = Mathf.Min(this.bulletNumber + 1, 4);
         level += 1;
     }
 }

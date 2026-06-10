@@ -10,6 +10,9 @@ public class PlayerHealth : MonoBehaviour
 
     private float regenAccumulator;
 
+    public AudioSource audioSource;
+    public AudioClip audioHurt;
+
     public int CurrentHealth
     {
         get { return currentHealth; }
@@ -26,6 +29,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        audioSource.PlayOneShot(audioHurt);
+
         currentHealth -= damage;
 
         Debug.Log("HP: " + currentHealth);
@@ -47,7 +52,8 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("GAME OVER");
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     public void IncreaseMaxHealth(
