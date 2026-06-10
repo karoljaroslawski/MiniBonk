@@ -157,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   baseSpeed: 2
   speed: 3
+  rotationOffset: 90
 --- !u!114 &-8780207357409677403
 MonoBehaviour:
   m_ObjectHideFlags: 0
