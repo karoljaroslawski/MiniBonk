@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerXP : MonoBehaviour
 {
@@ -61,5 +62,8 @@ public class PlayerXP : MonoBehaviour
             this,
             GetComponent<PlayerHealth>()
         );
+
+        if (Keyboard.current.kKey.isPressed)
+            AddXP(5);
     }
 }

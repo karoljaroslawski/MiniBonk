@@ -16,6 +16,9 @@ public class UpgradeManager : MonoBehaviour
     private UpgradeType[] currentChoices;
     public WeaponManager weaponManager;
 
+    public AudioSource audioSource;
+    public AudioClip audioLevelUp;
+
     void Awake()
     {
         Instance = this;
@@ -23,6 +26,8 @@ public class UpgradeManager : MonoBehaviour
 
     public void ShowUpgrade()
     {
+        audioSource.PlayOneShot(audioLevelUp, 0.5f);
+
         Debug.Log("SHOW UPGRADE");
 
         Time.timeScale = 0f;
@@ -51,6 +56,7 @@ public class UpgradeManager : MonoBehaviour
         if (aviableUpgrades.Contains(WeaponTypes.single)) upgrades.Add(UpgradeType.WeaponSingle);
         if (aviableUpgrades.Contains(WeaponTypes.shotgun)) upgrades.Add(UpgradeType.WeaponShotgun);
         if (aviableUpgrades.Contains(WeaponTypes.sniper)) upgrades.Add(UpgradeType.WeaponSniper);
+        if (aviableUpgrades.Contains(WeaponTypes.sword)) upgrades.Add(UpgradeType.WeaponSword);
 
         currentChoices =
             new UpgradeType[3];
@@ -123,13 +129,16 @@ public class UpgradeManager : MonoBehaviour
                 return "+0.1 HP REGEN";
 
             case UpgradeType.WeaponSingle:
-                return "Upgrade weapon single";
+                return "Weapon magic bolt";
 
             case UpgradeType.WeaponShotgun:
-                return "Upgrade weapon shotgun";
+                return "Weapon fire wave";
 
             case UpgradeType.WeaponSniper:
-                return "Upgrade weapon sniper";
+                return "Weapon spark";
+
+            case UpgradeType.WeaponSword:
+                return "Weapon sword";
         }
 
         return "";
@@ -207,6 +216,9 @@ public class UpgradeManager : MonoBehaviour
                 break;
             case UpgradeType.WeaponSniper:
                 weaponManager.UpgradeWeapon(WeaponTypes.sniper);
+                break;
+            case UpgradeType.WeaponSword:
+                weaponManager.UpgradeWeapon(WeaponTypes.sword);
                 break;
         }
     }

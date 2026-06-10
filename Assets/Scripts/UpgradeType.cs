@@ -7,5 +7,6 @@ public enum UpgradeType
     HealthRegen,
     WeaponSingle,
     WeaponShotgun,
-    WeaponSniper
+    WeaponSniper,
+    WeaponSword
 }

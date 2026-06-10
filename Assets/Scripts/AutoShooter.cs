@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AutoShooter : MonoBehaviour
@@ -6,7 +7,13 @@ public class AutoShooter : MonoBehaviour
 
     private float timer;
 
+    public MeleeWeapon meleeWeapon;
+
     public WeaponManager wm;
+
+    public AudioSource audioSource;
+    public AudioClip audioShoot;
+
     void Update()
     {
         timer += Time.deltaTime;
@@ -40,6 +47,9 @@ public class AutoShooter : MonoBehaviour
     {
         if (timer - w.lastShot < w.fireRate)
             return;
+
+        audioSource.PlayOneShot(audioShoot);
+
         w.lastShot = timer;
         GameObject nearestEnemy = FindNearestEnemy();
 
@@ -53,6 +63,15 @@ public class AutoShooter : MonoBehaviour
                 float spread = 45f/w.bulletNumber;
                 Quaternion rotation = Quaternion.AngleAxis((i-w.bulletNumber/2)*spread, Vector3.up);
                 ShootBullet(w, rotation * direction, nearestEnemy);
+            }
+        }
+        else if (w.weaponType == WeaponTypes.sword)
+        {
+            Debug.Log("ASDASD: "+w.bulletNumber);
+            List<EnemyHealth> enemyList = this.meleeWeapon.GetEnemies(((float)w.bulletNumber/2f)+1f);
+            foreach (EnemyHealth enemy in enemyList)
+            {
+                enemy.TakeDamage(w.damage);
             }
         }
         else

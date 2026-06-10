@@ -16,6 +16,11 @@ public class EnemyHealth : MonoBehaviour
     [HideInInspector]
     public int xpReward;
 
+    private bool isDead = false;
+
+    public AudioSource audioSource;
+    public AudioClip audioDeath;
+
     void Awake()
     {
         health = baseHealth;
@@ -34,6 +39,12 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        if (isDead)
+            return;
+        isDead = true;
+
+        audioSource.PlayOneShot(audioDeath);
+
         GameManager.Instance.AddKill();
 
         GameObject player =
