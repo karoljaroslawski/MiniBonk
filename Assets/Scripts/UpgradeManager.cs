@@ -26,7 +26,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void ShowUpgrade()
     {
-        audioSource.PlayOneShot(audioLevelUp, 0.5f);
+        audioSource.PlayOneShot(audioLevelUp, 0.1f);
 
         Debug.Log("SHOW UPGRADE");
 
