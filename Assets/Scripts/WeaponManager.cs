@@ -86,7 +86,7 @@ public class Weapon
     public void UpgradeWeapon()
     {
         this.damage += damageGain;
-        this.fireRate -= fireRateGain;
+        this.fireRate = Mathf.Max(this.fireRate - fireRateGain, 0.1f);
 
         if (this.weaponType == WeaponTypes.shotgun && level % 3 == 0)
             this.bulletNumber += 2;
