@@ -21,6 +21,9 @@ public class WaveManager : MonoBehaviour
 
     private float timer;
 
+    public float startTime;
+    
+
     private void Awake()
     {
         Instance = this;
@@ -28,6 +31,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        startTime = Time.time;
         CalculateWave();
 
         UIManager.Instance.UpdateWave(

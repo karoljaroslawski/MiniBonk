@@ -57,9 +57,12 @@ public class Bullet : MonoBehaviour
         EnemyHealth enemy =
             other.GetComponent<EnemyHealth>();
 
-        if (enemy != null)
-            enemy.TakeDamage(damage);
-        if(other.tag!="Player" && other.tag != "bullet")
-            Destroy(gameObject);
+        if (enemy != null && !enemy.name.Contains("Ghost"))
+        {
+            if (enemy != null)
+                enemy.TakeDamage(damage);
+            if (other.tag != "Player" && other.tag != "bullet")
+                Destroy(gameObject);
+        }
     }
 }
