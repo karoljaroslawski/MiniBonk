@@ -43,7 +43,7 @@ public class EnemyHealth : MonoBehaviour
             return;
         isDead = true;
 
-        audioSource.PlayOneShot(audioDeath);
+        audioSource.PlayOneShot(audioDeath, 2f);
 
         GameManager.Instance.AddKill();
 

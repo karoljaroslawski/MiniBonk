@@ -64,14 +64,14 @@ public class EnemyAI : MonoBehaviour
     {
         if (attackTimer <= 0f)
         {
+            attackTimer = 1f;
             PlayerHealth health =
                 collision.gameObject.GetComponent<PlayerHealth>();
 
-                if (health != null)
-                {
-                    if (animator != null) animator.SetTrigger("attack");
-                    health.TakeDamage(10);
-                }
+            if (health != null)
+            {
+                if (animator != null) animator.SetTrigger("attack");
+                health.TakeDamage(10);
             }
         }
     }
