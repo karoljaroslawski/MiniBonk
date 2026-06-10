@@ -11,6 +11,10 @@ public class EnemyAI : MonoBehaviour
 
     private float attackTimer;
 
+    Animator animator;
+
+   [SerializeField] private float rotationOffset = 0f;
+
     void Start()
     {
         speed = baseSpeed;
@@ -19,6 +23,8 @@ public class EnemyAI : MonoBehaviour
             GameObject
             .Find("Player")
             .transform;
+        animator = GetComponent<Animator>();
+        if (animator == null ) animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -37,7 +43,7 @@ public class EnemyAI : MonoBehaviour
                 ) *
                 Quaternion.Euler(
                     0,
-                    90,
+                    rotationOffset,
                     0
                 );
         }
@@ -45,9 +51,11 @@ public class EnemyAI : MonoBehaviour
         transform.position =
             Vector3.MoveTowards(
                 transform.position,
-                player.position,
+                player.position-Vector3.up,
                 speed * Time.deltaTime
             );
+        
+        if(animator != null) animator.SetFloat("speed", speed);
     }
 
     void OnCollisionStay(Collision collision)
@@ -65,6 +73,7 @@ public class EnemyAI : MonoBehaviour
 
                 if (health != null)
                 {
+                    if (animator != null) animator.SetTrigger("attack");
                     health.TakeDamage(10);
                 }
             }
