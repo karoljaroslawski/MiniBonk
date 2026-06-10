@@ -48,13 +48,13 @@ public class AutoShooter : MonoBehaviour
         if (timer - w.lastShot < w.fireRate)
             return;
 
-        audioSource.PlayOneShot(audioShoot);
-
         w.lastShot = timer;
         GameObject nearestEnemy = FindNearestEnemy();
 
         if (nearestEnemy == null)
             return;
+
+        audioSource.PlayOneShot(audioShoot,0.5f);
 
         if (w.weaponType == WeaponTypes.shotgun) {
             for (int i = 0; i < w.bulletNumber; i++)
@@ -67,7 +67,6 @@ public class AutoShooter : MonoBehaviour
         }
         else if (w.weaponType == WeaponTypes.sword)
         {
-            Debug.Log("ASDASD: "+w.bulletNumber);
             List<EnemyHealth> enemyList = this.meleeWeapon.GetEnemies(((float)w.bulletNumber/2f)+1f);
             foreach (EnemyHealth enemy in enemyList)
             {

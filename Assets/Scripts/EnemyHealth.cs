@@ -18,7 +18,6 @@ public class EnemyHealth : MonoBehaviour
 
     private bool isDead = false;
 
-    public AudioSource audioSource;
     public AudioClip audioDeath;
 
     void Awake()
@@ -43,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
             return;
         isDead = true;
 
-        audioSource.PlayOneShot(audioDeath, 2f);
+        AudioSource.PlayClipAtPoint(audioDeath, gameObject.transform.position);
 
         GameManager.Instance.AddKill();
 
