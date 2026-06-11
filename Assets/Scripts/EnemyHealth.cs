@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class EnemyHealth : MonoBehaviour
 
     [HideInInspector]
     public int xpReward;
+
+    public AudioMixerGroup sfxGroup;
 
     private bool isDead = false;
 
@@ -42,7 +45,8 @@ public class EnemyHealth : MonoBehaviour
             return;
         isDead = true;
 
-        AudioSource.PlayClipAtPoint(audioDeath, gameObject.transform.position);
+        //AudioSource.PlayClipAtPoint(audioDeath, gameObject.transform.position);
+        PlaySFXAtPoint(audioDeath, gameObject.transform.position);
 
         GameManager.Instance.AddKill();
 
@@ -57,5 +61,22 @@ public class EnemyHealth : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+    void PlaySFXAtPoint(AudioClip clip, Vector3 position)
+    {
+        GameObject tempGO = new GameObject("TempSFX");
+        tempGO.transform.position = position;
+
+        AudioSource aSource = tempGO.AddComponent<AudioSource>();
+
+        aSource.clip = clip;
+        aSource.outputAudioMixerGroup = sfxGroup;
+
+        aSource.spatialBlend = 1f;
+        aSource.rolloffMode = AudioRolloffMode.Logarithmic;
+
+        aSource.Play();
+
+        Destroy(tempGO, clip.length);
     }
 }

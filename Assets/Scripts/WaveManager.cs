@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WaveManager : MonoBehaviour
 {
@@ -51,11 +52,13 @@ public class WaveManager : MonoBehaviour
         UIManager.Instance.UpdateWaveTimer(
             remainingTime
         );
-
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+            timer=waveDuration;
         if (timer >= waveDuration)
         {
             StartNextWave();
         }
+       
     }
 
     void StartNextWave()

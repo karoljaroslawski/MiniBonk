@@ -3,7 +3,9 @@ using System.Collections;
 
 public class flyingEnemyAi : MonoBehaviour
 {
-    public float baseSpeed = 3f;
+    [HideInInspector]
+    public float speed;
+    public float baseSpeed = 2f;
     public float hoverHeight = 4f;
 
     public float maxDistance = 15f;
@@ -24,6 +26,7 @@ public class flyingEnemyAi : MonoBehaviour
 
     void Start()
     {
+        speed = baseSpeed;
         player =
            GameObject
            .Find("Player")
@@ -54,7 +57,7 @@ public class flyingEnemyAi : MonoBehaviour
 
         if (distance > maxDistance)
         {
-            basePos += direction * baseSpeed * Time.deltaTime;
+            basePos += direction * speed * Time.deltaTime;
         }
 
         float hover = hoverHeight + Mathf.Sin(Time.time * 2f) * 0.3f;

@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour
 
     public Slider sensSlider;
     public Slider volumeSlider;
+    public Slider musicSlider;
 
     private bool isPaused = false;
     void Update()
@@ -41,17 +42,18 @@ public class PauseManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         UI.SetActive(true);
-        Time.timeScale = 1f;
         isPaused = false;
         if (!upgradePanel.activeSelf) { 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            Time.timeScale = 1f;
         }
     }
     public void OpenSettings()
     {
         sensSlider.SetValueWithoutNotify(SettingsManager.sensitivity);
-        volumeSlider.SetValueWithoutNotify(SettingsManager.volume);
+        volumeSlider.SetValueWithoutNotify(SettingsManager.SFXvolume);
+        musicSlider.SetValueWithoutNotify(SettingsManager.Musicvolume);
         menuPanel.SetActive(false);
         settingsPanel.SetActive(true);
     }

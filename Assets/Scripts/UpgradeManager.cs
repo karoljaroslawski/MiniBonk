@@ -13,6 +13,8 @@ public class UpgradeManager : MonoBehaviour
     public Button button2;
     public Button button3;
 
+    public bool upgradeActive = false;
+
     private UpgradeType[] currentChoices;
     public WeaponManager weaponManager;
 
@@ -28,6 +30,7 @@ public class UpgradeManager : MonoBehaviour
     {
         audioSource.PlayOneShot(audioLevelUp, 0.1f);
 
+        upgradeActive = true;
         Time.timeScale = 0f;
 
         panel.SetActive(true);
@@ -148,7 +151,7 @@ public class UpgradeManager : MonoBehaviour
 
         panel.SetActive(false);
 
-
+        upgradeActive = false;
         Time.timeScale = 1f;
 
         Cursor.lockState = CursorLockMode.Locked;

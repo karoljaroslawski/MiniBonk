@@ -224,4 +224,5 @@ MonoBehaviour:
   baseXPReward: 40
   health: 0
   xpReward: 0
+  sfxGroup: {fileID: 3026461493267594607, guid: 464ccef31f3cf15438e800d4864b90be, type: 2}
   audioDeath: {fileID: 8300000, guid: 41a3fab6379889147911901e593e7e30, type: 3}

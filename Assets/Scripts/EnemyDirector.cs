@@ -80,7 +80,7 @@ public class EnemyDirector : MonoBehaviour
                 GetSpawnPosition(),
                 Quaternion.identity
             );
-
+        
         ScaleEnemy(enemy);
     }
 
@@ -166,6 +166,7 @@ public class EnemyDirector : MonoBehaviour
         EnemyAI ai =
             enemy.GetComponent<EnemyAI>();
 
+
         float statMultiplier =
             Mathf.Pow(
                 1.15f,
@@ -184,9 +185,12 @@ public class EnemyDirector : MonoBehaviour
                 statMultiplier
             );
 
-        ai.speed =
-            ai.baseSpeed *
-            (1f + (tier * 0.05f));
+        if (ai != null) ai.speed = ai.baseSpeed * (1f + (tier * 0.05f));
+        else
+        {
+            flyingEnemyAi Flyingai = enemy.GetComponent<flyingEnemyAi>();
+            Flyingai.speed = Flyingai.baseSpeed * (1f + (tier * 0.05f));
+        }
     }
 
     Vector3 GetSpawnPosition()

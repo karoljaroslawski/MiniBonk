@@ -52,7 +52,11 @@ public class PlayerXP : MonoBehaviour
             GetComponent<PlayerHealth>()
         );
 
-        if (Keyboard.current.kKey.isPressed)
-            AddXP(5);
+        if (Keyboard.current.kKey.wasPressedThisFrame)
+        {
+            LevelUp();
+            currentXP = 0;
+            UIManager.Instance.UpdateXP(currentXP, xpToNextLevel);
+        }
     }
 }
