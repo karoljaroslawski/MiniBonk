@@ -17,8 +17,6 @@ public class PlayerXP : MonoBehaviour
             amount * xpMultiplier
         );
 
-        Debug.Log("XP: " + currentXP);
-
         if (currentXP >= xpToNextLevel)
         {
             LevelUp();
@@ -38,17 +36,8 @@ public class PlayerXP : MonoBehaviour
 
         xpToNextLevel += 25;
 
-        Debug.Log("LEVEL UP! " + level);
-
         UpgradeManager.Instance.ShowUpgrade();
 
-        /*AutoShooter shooter =
-        GetComponent<AutoShooter>();
-
-        if (shooter != null)
-        {
-            shooter.damage += 2;
-        }*/
         UIManager.Instance.UpdateLevel(
             level
         );

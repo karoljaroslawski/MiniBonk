@@ -17,8 +17,6 @@ public class Bullet : MonoBehaviour
     public void SetDirection(Vector3 dir)
     {
         direction = dir.normalized;
-
-        Debug.Log("Direction: " + direction);
     }
 
     public void setMaterial(WeaponTypes weaponType)

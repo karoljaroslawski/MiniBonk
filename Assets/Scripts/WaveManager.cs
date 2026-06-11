@@ -89,10 +89,6 @@ public class WaveManager : MonoBehaviour
         minimumEnemies =
             5 + wave;
 
-        Debug.Log(
-            $"Wave {wave} | " +
-            $"Tier {currentTier} | " +
-            $"Budget {waveBudget}"
-        );
+        //Debug.Log($"Wave {wave} | " + $"Tier {currentTier} | " + $"Budget {waveBudget}");
     }
 }

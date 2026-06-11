@@ -13,9 +13,7 @@ public class GameManager : MonoBehaviour
 
     public void AddKill()
     {
-        kills++;
-
-        Debug.Log("Kills: " + kills);
+        ++kills;
 
         UIManager.Instance.UpdateKills(
             kills
