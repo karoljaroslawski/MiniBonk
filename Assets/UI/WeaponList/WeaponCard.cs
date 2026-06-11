@@ -11,7 +11,10 @@ public class WeaponCard : MonoBehaviour
     public void SetLevel(int level)
     {
         this.level = level;
-        weaponLevel.text = "LVL " + level.ToString();
+        if (level >= 8)
+            weaponLevel.text = "MAX";
+        else
+            weaponLevel.text = "LVL " + level.ToString();
     }
     
     public int GetLevel()

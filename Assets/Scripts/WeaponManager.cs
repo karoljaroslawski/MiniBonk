@@ -28,7 +28,7 @@ public class WeaponManager : MonoBehaviour
         if (this.single.level < 7) aviableUpgrades.Add(WeaponTypes.single);
         if (this.shotgun.level < 7) aviableUpgrades.Add(WeaponTypes.shotgun);
         if (this.sniper.level < 7) aviableUpgrades.Add(WeaponTypes.sniper);
-        if (this.sniper.level < 7) aviableUpgrades.Add(WeaponTypes.sword);
+        if (this.sword.level < 7) aviableUpgrades.Add(WeaponTypes.sword);
 
         return aviableUpgrades;
     }

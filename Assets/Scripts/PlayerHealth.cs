@@ -41,10 +41,6 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
 
-        Debug.Log("HP: " + currentHealth);
-
-
-
         if (currentHealth <= 0)
         {
             Die();
@@ -93,7 +89,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (wave > bestwave || (wave == bestwave && kills > bestkills))
         {
-            deathPanel.transform.Find("Panel/Best result").GetComponent<TMP_Text>().text = "New Record! Previous best score:";
+            deathPanel.transform.Find("Panel/Best result").GetComponent<TMP_Text>().text = "New Record!\nPrevious best score:";
             PlayerPrefs.SetFloat("time", time);
             PlayerPrefs.SetInt("kills", kills);
             PlayerPrefs.SetInt("wave", wave);

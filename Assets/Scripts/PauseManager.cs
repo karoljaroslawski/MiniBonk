@@ -43,7 +43,6 @@ public class PauseManager : MonoBehaviour
         UI.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
-        Debug.Log(upgradePanel.activeSelf);
         if (!upgradePanel.activeSelf) { 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

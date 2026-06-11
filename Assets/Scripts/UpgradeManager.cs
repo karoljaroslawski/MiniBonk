@@ -28,8 +28,6 @@ public class UpgradeManager : MonoBehaviour
     {
         audioSource.PlayOneShot(audioLevelUp, 0.1f);
 
-        Debug.Log("SHOW UPGRADE");
-
         Time.timeScale = 0f;
 
         panel.SetActive(true);
@@ -92,11 +90,8 @@ public class UpgradeManager : MonoBehaviour
         );
     }
 
-    void SetupButton(
-        Button button,
-        UpgradeType type)
+    void SetupButton(Button button, UpgradeType type)
     {
-        Debug.Log("Setup: " + type);
 
         button.GetComponentInChildren<TMP_Text>().text =
             GetUpgradeText(type);

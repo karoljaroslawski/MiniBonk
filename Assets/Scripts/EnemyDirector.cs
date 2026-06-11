@@ -45,10 +45,7 @@ public class EnemyDirector : MonoBehaviour
     public void StartWave()
     {
 
-        Debug.Log(
-            $"Wave {WaveManager.Instance.wave} " +
-            $"Budget {remainingBudget}"
-        );
+        //Debug.Log($"Wave {WaveManager.Instance.wave} " +$"Budget {remainingBudget}");
         remainingBudget =
             WaveManager.Instance.waveBudget;
 
