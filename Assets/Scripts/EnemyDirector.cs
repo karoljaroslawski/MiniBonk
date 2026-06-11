@@ -32,18 +32,9 @@ public class EnemyDirector : MonoBehaviour
     {
         spawnTimer += Time.deltaTime;
 
-        float spawnInterval =
-            Mathf.Max(
-                0.03f,
-                0.2f -
-                (WaveManager.Instance.currentTier * 0.01f)
-            );
+        float spawnInterval = Mathf.Max(0.03f, 0.2f - (WaveManager.Instance.currentTier * 0.01f));
 
-        if (
-            spawnTimer >= spawnInterval
-            &&
-            remainingBudget > 0
-        )
+        if (spawnTimer >= spawnInterval && remainingBudget > 0)
         {
             spawnTimer = 0f;
 
@@ -67,11 +58,7 @@ public class EnemyDirector : MonoBehaviour
                 * 0.7f
             );
 
-        for (
-            int i = 0;
-            i < burst;
-            i++
-        )
+        for (int i = 0; i < burst; i++)
         {
             SpawnBudgetEnemy();
         }

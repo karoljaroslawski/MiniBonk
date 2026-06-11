@@ -17,8 +17,8 @@ public class WeaponManager : MonoBehaviour
         this.sniper = new Weapon(20, 1, 4f, 0.2f, 1, 4f, WeaponTypes.sniper);
         this.sword = new Weapon(10, 2, 1f, 0.2f, 1, 4f, WeaponTypes.sword);
         this.activeWeapons = new List<Weapon>();
-        //this.activeWeapons.Add(this.single);
-        this.activeWeapons.Add(this.sword);
+        this.activeWeapons.Add(this.single);
+        //this.activeWeapons.Add(this.sword);
         //this.activeWeapons.Add(this.sniper);
     }
 
@@ -56,6 +56,11 @@ public class WeaponManager : MonoBehaviour
         else w.UpgradeWeapon();
     }
 
+    public List<Weapon> GetActiveWeapons()
+    {
+        return activeWeapons;
+    }
+
 }
 
 public class Weapon
@@ -68,7 +73,7 @@ public class Weapon
     public int bulletNumber = 1;
     public float lastShot = 0;
     public float speedMult = 1f;
-    public float level = 0;
+    public int level = 0;
     public WeaponTypes weaponType = WeaponTypes.single;
 
 

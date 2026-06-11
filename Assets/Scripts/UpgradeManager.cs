@@ -129,16 +129,16 @@ public class UpgradeManager : MonoBehaviour
                 return "+0.1 HP REGEN";
 
             case UpgradeType.WeaponSingle:
-                return "Weapon magic bolt";
+                return "Get\nMagic Missle";
 
             case UpgradeType.WeaponShotgun:
-                return "Weapon fire wave";
+                return "Get\nFire Surge";
 
             case UpgradeType.WeaponSniper:
-                return "Weapon spark";
+                return "Get\nSpark Bolt";
 
             case UpgradeType.WeaponSword:
-                return "Weapon sword";
+                return "Get\n Enchanted Sword";
         }
 
         return "";
@@ -210,15 +210,19 @@ public class UpgradeManager : MonoBehaviour
 
             case UpgradeType.WeaponSingle:
                 weaponManager.UpgradeWeapon(WeaponTypes.single);
+                UIManager.Instance.UpdateWeapons();
                 break;
             case UpgradeType.WeaponShotgun:
                 weaponManager.UpgradeWeapon(WeaponTypes.shotgun);
+                UIManager.Instance.UpdateWeapons();
                 break;
             case UpgradeType.WeaponSniper:
                 weaponManager.UpgradeWeapon(WeaponTypes.sniper);
+                UIManager.Instance.UpdateWeapons();
                 break;
             case UpgradeType.WeaponSword:
                 weaponManager.UpgradeWeapon(WeaponTypes.sword);
+                UIManager.Instance.UpdateWeapons();
                 break;
         }
     }
