@@ -10184,6 +10184,7 @@ MonoBehaviour:
   audioHurt: {fileID: 8300000, guid: b520ad7ec6d0b5445949c2c8659b7d7d, type: 3}
   deathPanel: {fileID: 2098556283}
   UI: {fileID: 191789026}
+  isDead: 0
 --- !u!114 &285980692
 MonoBehaviour:
   m_ObjectHideFlags: 0

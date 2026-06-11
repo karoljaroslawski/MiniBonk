@@ -27,12 +27,14 @@ public class PauseManager : MonoBehaviour
 
     public void Pause()
     {
-        pausePanel.SetActive(true);
-        UI.SetActive(false);
-        Time.timeScale = 0f;
-        isPaused = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if (GameObject.Find("Player").GetComponent<PlayerHealth>().isDead == false) {
+            pausePanel.SetActive(true);
+            UI.SetActive(false);
+            Time.timeScale = 0f;
+            isPaused = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public void Resume()

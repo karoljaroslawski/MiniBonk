@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
     public GameObject deathPanel;
     public GameObject UI;
 
+    public bool isDead = false;
+
     public int CurrentHealth
     {
         get { return currentHealth; }
@@ -57,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         //gameObject.SetActive(false);
+        isDead=true;
         deathPanel.SetActive(true);
         UI.SetActive(false);
         Time.timeScale = 0f;

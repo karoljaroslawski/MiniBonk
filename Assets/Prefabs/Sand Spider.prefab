@@ -224,5 +224,4 @@ MonoBehaviour:
   baseXPReward: 40
   health: 0
   xpReward: 0
-  audioSource: {fileID: 0}
-  audioDeath: {fileID: 0}
+  audioDeath: {fileID: 8300000, guid: 41a3fab6379889147911901e593e7e30, type: 3}
