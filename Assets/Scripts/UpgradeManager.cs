@@ -118,13 +118,13 @@ public class UpgradeManager : MonoBehaviour
                 return "HEAL 30 HP";
 
             case UpgradeType.XPMultiplier:
-                return "+15% XP";
+                return "+10% XP";
 
             case UpgradeType.MoveSpeed:
                 return "+1 SPEED";
 
             case UpgradeType.HealthRegen:
-                return "+0.1 HP REGEN";
+                return "+0.2 HP REGEN";
 
             case UpgradeType.WeaponSingle:
                 return "Get\nMagic Missle";
@@ -192,7 +192,7 @@ public class UpgradeManager : MonoBehaviour
 
             case UpgradeType.XPMultiplier:
 
-                xp.xpMultiplier *= 1.15f;
+                xp.xpMultiplier *= 1.1f;
                 break;
 
             case UpgradeType.MoveSpeed:
@@ -202,7 +202,7 @@ public class UpgradeManager : MonoBehaviour
 
             case UpgradeType.HealthRegen:
 
-                health.healthRegen += 0.1f;
+                health.healthRegen += 0.2f;
 
                 break;
 

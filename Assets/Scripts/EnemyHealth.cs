@@ -4,6 +4,7 @@ using UnityEngine.Audio;
 public class EnemyHealth : MonoBehaviour
 {
     public EnemyType enemyType;
+    public GameObject deathEffectPrefab;
 
     public int cost = 1;
 
@@ -59,6 +60,9 @@ public class EnemyHealth : MonoBehaviour
                 .GetComponent<PlayerXP>()
                 .AddXP(xpReward);
         }
+
+        if (deathEffectPrefab != null)
+            Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }

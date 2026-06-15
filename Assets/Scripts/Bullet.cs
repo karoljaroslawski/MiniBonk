@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -8,6 +9,12 @@ public class Bullet : MonoBehaviour
 
     public int damage = 10;
 
+    public int maxEnemyHits = 1;
+
+    private int enemiesHit;
+
+    private readonly HashSet<EnemyHealth> hitEnemies = new HashSet<EnemyHealth>();
+
     private Vector3 direction;
 
     public Material materialSingle;
@@ -17,6 +24,9 @@ public class Bullet : MonoBehaviour
     public void SetDirection(Vector3 dir)
     {
         direction = dir.normalized;
+
+        if (direction != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(direction);
     }
 
     public void setMaterial(WeaponTypes weaponType)
@@ -52,15 +62,26 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        EnemyHealth enemy =
-            other.GetComponent<EnemyHealth>();
+        if (other.CompareTag("Player") || other.CompareTag("bullet"))
+            return;
+
+        EnemyHealth enemy = other.GetComponent<EnemyHealth>();
 
         if (enemy != null && !enemy.name.Contains("Ghost"))
         {
-            if (enemy != null)
-                enemy.TakeDamage(damage);
-            if (other.tag != "Player" && other.tag != "bullet")
+            if (hitEnemies.Contains(enemy))
+                return;
+
+            hitEnemies.Add(enemy);
+            enemy.TakeDamage(damage);
+            enemiesHit++;
+
+            if (enemiesHit >= maxEnemyHits)
                 Destroy(gameObject);
+
+            return;
         }
+
+        Destroy(gameObject);
     }
 }

@@ -37,6 +37,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (AbilityManager.Instance != null && AbilityManager.Instance.IsInvulnerable)
+            return;
+
         audioSource.PlayOneShot(audioHurt);
 
         currentHealth -= damage;

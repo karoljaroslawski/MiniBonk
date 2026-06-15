@@ -61,7 +61,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 velocity = Vector3.up * velocityY;
 
-        controller.Move((move.normalized * speed + velocity) * Time.deltaTime);
+        float effectiveSpeed = speed;
+        if (AbilityManager.Instance != null)
+            effectiveSpeed *= AbilityManager.Instance.MovementSpeedMultiplier;
+
+        controller.Move((move.normalized * effectiveSpeed + velocity) * Time.deltaTime);
 
         Vector3 moveDir = move.normalized;
 

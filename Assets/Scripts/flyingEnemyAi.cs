@@ -15,10 +15,15 @@ public class flyingEnemyAi : MonoBehaviour
 
     private Transform player;
     public float shootCooldown = 1.5f;
+
+    [HideInInspector]
+    public float currentShootCooldown;
     public float projectileSpeed = 10f;
 
     float shootTimer;
 
+    public int damage;
+    public int baseDamage = 10;
 
     private Animator animator;
 
@@ -26,7 +31,10 @@ public class flyingEnemyAi : MonoBehaviour
 
     void Start()
     {
+
         speed = baseSpeed;
+        damage = baseDamage;
+        currentShootCooldown = shootCooldown;
         player =
            GameObject
            .Find("Player")
@@ -57,7 +65,7 @@ public class flyingEnemyAi : MonoBehaviour
 
         if (distance > maxDistance)
         {
-            basePos += direction * speed * Time.deltaTime;
+            basePos += direction * speed * AbilityManager.EnemySpeedMultiplier * Time.deltaTime;
         }
 
         float hover = hoverHeight + Mathf.Sin(Time.time * 2f) * 0.3f;
@@ -70,7 +78,7 @@ public class flyingEnemyAi : MonoBehaviour
 
         if (distance <= maxDistance && shootTimer <= 0f)
         {
-            shootTimer = shootCooldown;
+            shootTimer = currentShootCooldown;
             StartCoroutine(Attack());
             
         }
@@ -92,6 +100,7 @@ public class flyingEnemyAi : MonoBehaviour
         if (projectile == null || shootPoint == null) return;
 
         GameObject proj = Instantiate(projectile, shootPoint.position, Quaternion.identity);
+        proj.GetComponent<enemyBullet>().damage = damage;
 
         Vector3 dir = (player.position - shootPoint.position).normalized;
 

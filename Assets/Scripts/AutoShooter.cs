@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class AutoShooter : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    public GameObject magicMissilePrefab;
+    public GameObject fireSurgePrefab;
+    public GameObject sparkBoltPrefab;
 
     private float timer;
 
@@ -13,6 +15,8 @@ public class AutoShooter : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip audioShoot;
+    public AudioClip swordSound;
+    private float lastSwordSoundTime;
 
     void Update()
     {
@@ -23,13 +27,28 @@ public class AutoShooter : MonoBehaviour
         }
     }
 
+    GameObject GetBulletPrefab(WeaponTypes weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponTypes.shotgun:
+                return fireSurgePrefab;
+
+            case WeaponTypes.sniper:
+                return sparkBoltPrefab;
+
+            default:
+                return magicMissilePrefab;
+        }
+    }
+
     void ShootBullet(Weapon w, Vector3 direction, GameObject nearestEnemy)
     {
         GameObject bullet =
         Instantiate(
-        bulletPrefab,
-        transform.position + Vector3.up,
-        Quaternion.identity
+            GetBulletPrefab(w.weaponType),
+            transform.position + Vector3.up,
+            Quaternion.identity
         );
 
         Bullet bulletScript =
@@ -39,13 +58,31 @@ public class AutoShooter : MonoBehaviour
 
         bulletScript.damage = w.damage;
         bulletScript.speedMult = w.speedMult;
+        bulletScript.maxEnemyHits = GetMaxEnemyHits(w);
+    }
 
-        bulletScript.setMaterial(w.weaponType);
+    int GetMaxEnemyHits(Weapon w)
+    {
+        switch (w.weaponType)
+        {
+            case WeaponTypes.shotgun:
+                return 5 + w.level;
+            case WeaponTypes.sniper:
+                return 20 + w.level * 2;
+            default:
+                return 1;
+        }
     }
 
     void Shoot(Weapon w, float timer)
     {
-        if (timer - w.lastShot < w.fireRate)
+        float attackSpeedMultiplier = 1f;
+        if (AbilityManager.Instance != null)
+            attackSpeedMultiplier = AbilityManager.Instance.AttackSpeedMultiplier;
+
+        float effectiveFireRate = w.fireRate / attackSpeedMultiplier;
+
+        if (timer - w.lastShot < effectiveFireRate)
             return;
 
         w.lastShot = timer;
@@ -54,7 +91,18 @@ public class AutoShooter : MonoBehaviour
         if (nearestEnemy == null)
             return;
 
-        audioSource.PlayOneShot(audioShoot,0.5f);
+        if (w.weaponType == WeaponTypes.sword)
+        {
+            if (Time.time - lastSwordSoundTime > 0.4f)
+            {
+                audioSource.PlayOneShot(swordSound, 0.15f);
+                lastSwordSoundTime = Time.time;
+            }
+        }
+        else
+        {
+            audioSource.PlayOneShot(audioShoot, 0.5f);
+        }
 
         if (w.weaponType == WeaponTypes.shotgun) {
             for (int i = 0; i < w.bulletNumber; i++)
