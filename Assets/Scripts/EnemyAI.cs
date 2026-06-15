@@ -11,6 +11,11 @@ public class EnemyAI : MonoBehaviour
 
     private float attackTimer = 0f;
 
+    public int baseDamage = 10;
+
+    [HideInInspector]
+    public int damage;
+
     Animator animator;
 
    [SerializeField] private float rotationOffset = 0f;
@@ -18,6 +23,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         speed = baseSpeed;
+        damage = baseDamage;
 
         player =
             GameObject
@@ -54,7 +60,7 @@ public class EnemyAI : MonoBehaviour
             Vector3.MoveTowards(
                 transform.position,
                 player.position-Vector3.up,
-                speed * Time.deltaTime
+                speed * AbilityManager.EnemySpeedMultiplier * Time.deltaTime
             );
         
         if(animator != null) animator.SetFloat("speed", speed);
@@ -70,7 +76,7 @@ public class EnemyAI : MonoBehaviour
             if (health != null)
             {
                 if (animator != null) animator.SetTrigger("attack");
-                health.TakeDamage(10);
+                health.TakeDamage(damage);
             }
         }
     }

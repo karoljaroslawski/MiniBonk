@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   enemyType: 0
+  deathEffectPrefab: {fileID: 5162910912013668194, guid: cf82839c411151342a7b2337bda9fb34, type: 3}
   cost: 4
   baseHealth: 20
   baseXPReward: 30
@@ -144,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd8ee12bb831084596d848c7ac917b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::flyingEnemyAi
+  speed: 0
   baseSpeed: 3
   hoverHeight: 0.5
   maxDistance: 12

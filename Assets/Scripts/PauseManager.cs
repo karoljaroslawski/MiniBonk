@@ -32,6 +32,7 @@ public class PauseManager : MonoBehaviour
             pausePanel.SetActive(true);
             UI.SetActive(false);
             Time.timeScale = 0f;
+            AudioListener.pause = true;
             isPaused = true;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -43,6 +44,7 @@ public class PauseManager : MonoBehaviour
         pausePanel.SetActive(false);
         UI.SetActive(true);
         isPaused = false;
+        AudioListener.pause = false;
         if (!upgradePanel.activeSelf) { 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -64,6 +66,7 @@ public class PauseManager : MonoBehaviour
     }
     public void Quit()
     {
+        AudioListener.pause = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }

@@ -15,6 +15,9 @@ public class flyingEnemyAi : MonoBehaviour
 
     private Transform player;
     public float shootCooldown = 1.5f;
+
+    [HideInInspector]
+    public float currentShootCooldown;
     public float projectileSpeed = 10f;
 
     float shootTimer;
@@ -26,7 +29,9 @@ public class flyingEnemyAi : MonoBehaviour
 
     void Start()
     {
+
         speed = baseSpeed;
+        currentShootCooldown = shootCooldown;
         player =
            GameObject
            .Find("Player")
@@ -57,7 +62,7 @@ public class flyingEnemyAi : MonoBehaviour
 
         if (distance > maxDistance)
         {
-            basePos += direction * speed * Time.deltaTime;
+            basePos += direction * speed * AbilityManager.EnemySpeedMultiplier * Time.deltaTime;
         }
 
         float hover = hoverHeight + Mathf.Sin(Time.time * 2f) * 0.3f;
@@ -70,7 +75,7 @@ public class flyingEnemyAi : MonoBehaviour
 
         if (distance <= maxDistance && shootTimer <= 0f)
         {
-            shootTimer = shootCooldown;
+            shootTimer = currentShootCooldown;
             StartCoroutine(Attack());
             
         }
