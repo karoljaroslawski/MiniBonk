@@ -208,11 +208,14 @@ public class EnemyDirector : MonoBehaviour
                 finalMultiplier
             );
 
+        float damageMultiplier = Mathf.Pow(1.04f, wave - 1);
+
         if (ai != null)
         {
             ai.speed =
                 ai.baseSpeed *
                 (1f + wave * 0.01f);
+            ai.damage = Mathf.RoundToInt(ai.baseDamage * damageMultiplier);
         }
         else
         {
@@ -224,20 +227,14 @@ public class EnemyDirector : MonoBehaviour
                 flyingAi.speed =
                     flyingAi.baseSpeed *
                     (1f + wave * 0.01f);
+                flyingAi.damage = Mathf.RoundToInt(flyingAi.baseDamage * damageMultiplier);
             }
+
         }
 
-        float damageMultiplier =
-    Mathf.Pow(
-        1.04f,
-        wave - 1
-    );
 
-        ai.damage =
-            Mathf.RoundToInt(
-                ai.baseDamage *
-                damageMultiplier
-            );
+
+
     }
 
     void SpawnTierBoss()
@@ -383,12 +380,27 @@ boss.AddComponent<BossAbility>();
         wave - 1
     );
 
-        ai.damage =
-            Mathf.RoundToInt(
-                ai.baseDamage *
-                damageMultiplier *
-                2f
-            );
+        if (ai != null)
+        {
+            ai.speed =
+                ai.baseSpeed *
+                (1f + wave * 0.01f);
+            ai.damage = Mathf.RoundToInt(ai.baseDamage * damageMultiplier);
+        }
+        else
+        {
+            flyingEnemyAi flyingAi =
+                boss.GetComponent<flyingEnemyAi>();
+
+            if (flyingAi != null)
+            {
+                flyingAi.speed =
+                    flyingAi.baseSpeed *
+                    (1f + wave * 0.01f);
+                flyingAi.damage = Mathf.RoundToInt(flyingAi.baseDamage * damageMultiplier);
+            }
+
+        }
 
         boss.transform.localScale *= 2f;
 

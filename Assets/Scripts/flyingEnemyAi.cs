@@ -22,6 +22,8 @@ public class flyingEnemyAi : MonoBehaviour
 
     float shootTimer;
 
+    public int damage;
+    public int baseDamage = 10;
 
     private Animator animator;
 
@@ -31,6 +33,7 @@ public class flyingEnemyAi : MonoBehaviour
     {
 
         speed = baseSpeed;
+        damage = baseDamage;
         currentShootCooldown = shootCooldown;
         player =
            GameObject
@@ -97,6 +100,7 @@ public class flyingEnemyAi : MonoBehaviour
         if (projectile == null || shootPoint == null) return;
 
         GameObject proj = Instantiate(projectile, shootPoint.position, Quaternion.identity);
+        proj.GetComponent<enemyBullet>().damage = damage;
 
         Vector3 dir = (player.position - shootPoint.position).normalized;
 
