@@ -205,6 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   baseSpeed: 1
   speed: 0
+  baseDamage: 10
+  damage: 0
   rotationOffset: 180
 --- !u!114 &8059205171843165499
 MonoBehaviour:
@@ -221,7 +223,7 @@ MonoBehaviour:
   enemyType: 0
   deathEffectPrefab: {fileID: 5162910912013668194, guid: cf82839c411151342a7b2337bda9fb34, type: 3}
   cost: 4
-  baseHealth: 100
+  baseHealth: 50
   baseXPReward: 40
   health: 0
   xpReward: 0
